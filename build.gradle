@@ -1,7 +1,28 @@
 apply plugin: 'cpp'
 
 model {
+
+    repositories {
+        libs(PrebuiltLibraries) {
+            fuse {
+                binaries.withType(SharedLibraryBinary) {
+                    sharedLibraryFile = file("/lib/x86_64-linux-gnu/libfuse.so")
+                }
+            }
+        }
+    }
     components {
-        main(NativeExecutableSpec)
+        main(NativeExecutableSpec) {
+            binaries.all {
+                cppCompiler.define "_FILE_OFFSET_BITS=64"
+            }
+            sources {
+                cpp {
+                    preCompiledHeader 'pch.h'
+                    lib library: 'fuse', linkage: 'shared'
+                }
+                
+            }
+        }
     }
 }
