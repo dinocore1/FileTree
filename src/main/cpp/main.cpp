@@ -1,7 +1,6 @@
 
 #include "pch.h"
 
-using namespace std;
 
 static int ft_getattr( const char *path, struct stat *st )
 {
@@ -83,7 +82,10 @@ static struct fuse_operations operations;
 
 
 int main(int argc, char** argv) {
-    cout << "hello world" << endl;
+
+	string homeDir = getHomeDir();
+
+    cout << "Home dir: " << homeDir << endl;
 
     operations.getattr = ft_getattr;
     operations.readdir = ft_readdir;

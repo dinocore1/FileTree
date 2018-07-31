@@ -11,6 +11,12 @@
 #include <stdlib.h>
 
 #include <iostream>
+#include <string>
+
+using namespace std;
+
+#include "utils.h"
+#include "datafile.h"
 
 
 #endif // PCH_H
