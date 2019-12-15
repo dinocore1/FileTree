@@ -34,6 +34,8 @@ model {
         }
     }
     components {
+        fs(NativeLibrarySpec)
+
         main(NativeExecutableSpec) {
             binaries.all {
                 cppCompiler.define "_FILE_OFFSET_BITS=64"
