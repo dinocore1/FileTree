@@ -1,5 +1,4 @@
-#ifndef DATAFILE_H
-#define DATAFILE_H
+#pragma once
 
 typedef uint32_t blockptr_t;
 
@@ -25,5 +24,3 @@ public:
 private:
     FILE* mFD;
 };
-
-#endif // DATAFILE_H

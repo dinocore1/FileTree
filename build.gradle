@@ -2,6 +2,28 @@ apply plugin: 'cpp'
 
 model {
 
+    buildTypes {
+        debug
+        release
+    }
+
+    binaries {
+        all {
+            if (toolChain in Gcc) {
+                cppCompiler.args '-std=c++14'
+                if(buildType == buildTypes.debug) {
+                    cppCompiler.args '-g'
+                }
+            }
+
+            if (toolChain in VisualCpp && buildType == buildTypes.debug) {
+                cppCompiler.args '/Zi'
+                cppCompiler.define 'DEBUG'
+                linker.args '/DEBUG'
+            }
+        }
+    }
+
     repositories {
         libs(PrebuiltLibraries) {
             fuse {
